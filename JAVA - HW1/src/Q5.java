@@ -14,9 +14,8 @@ public class Q5 {
 		
 		System.out.println("Hi, please enter 3 2D points");
 		
-		//Get the coordinates for A.
-
 		try {
+			//Get the coordinates for A.
 			System.out.print("A: x = ");
 			a[0] = myScanner.nextInt();
 			System.out.print("A: y = ");
