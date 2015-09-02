@@ -31,6 +31,7 @@ public class Q2 {
 		} finally {
 			myScanner.close();
 			System.out.println("The End.");
+			System.out.println("Test 1");
 		}
 	}
 	public static double calcArea(double radius) {
