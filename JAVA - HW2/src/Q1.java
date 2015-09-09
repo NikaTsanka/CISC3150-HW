@@ -6,6 +6,7 @@ public class Q1 {
 		System.out.print("Please enter how tall " + 
 						   "you want your pyramid ");
 
+		@SuppressWarnings("resource")
 		int range = new Scanner(System.in).nextInt();
 		
 		for (int i = 1; i <= range; i++) {
@@ -15,6 +16,10 @@ public class Q1 {
 			for (int j = 1; j <= i; j++){
 				System.out.printf("%1d", j);
 			}
+			for (int k = 1; k <= i-1; k++){
+				System.out.printf("%1d", i-k);
+			}
+
 			System.out.println();
 		}
 	}

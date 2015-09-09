@@ -1,0 +1,11 @@
+Please enter a string: tsankaknast
+Your string is a palindrome. :)
+
+Please enter a string: nikanika
+Entered string is not a palindrome.
+
+This is with an empty string
+
+Please enter a string: 
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: Invalid input. Empty String
+	at Q3.main(Q3.java:22)
