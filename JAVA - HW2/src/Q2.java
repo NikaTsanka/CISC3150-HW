@@ -37,13 +37,13 @@ public class Q2 {
 	}
 	public static void printDayNums() {
 		//Add spacing according to the starting day
-		for (int i = 0; i < fDay - 1; i++) {
+		for (int i = 0; i < fDay; i++) {
 			System.out.printf("   ");			
 		}
 		for (int i = 1; i < numOfDays + 1; i++) {
 			if (fDay%7==0 && fDay!=0)
 				System.out.println();
-			System.out.printf("%3d   ", i);
+			System.out.printf("%1d  ", i);
 			fDay+=1;
 		}
 		numOfDays%=7;
