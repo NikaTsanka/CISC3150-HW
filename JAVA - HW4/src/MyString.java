@@ -3,13 +3,8 @@ import java.util.Arrays;
 public class MyString {
 
 	//Character array to store the passed characters.
-	private char[] chars;
+	private final char[] chars;
 
-	public MyString(char cPass) {
-		this.chars = new char[1];
-		
-		this.chars[0] = cPass;
-	}
 	/**
 	 * Constructor to store the passed characters in
 	 * private character array.
@@ -23,14 +18,19 @@ public class MyString {
 		}
 	}
 
-	public MyString(int i) {
-
-
-		char intToChar =  (char) ('0' + i);
+	private MyString(int i) {
+		//char intToChar =  (char) (i);
+		
+		char intToChar = Integer.toString(i).charAt(0);
 
 		this.chars = new char[1];
 
 		this.chars[0] = intToChar;
+	}
+	
+	public MyString() {
+		//this will simply create an empty chars 
+		this.chars = new char[0];
 	}
 
 	//works
@@ -51,33 +51,29 @@ public class MyString {
 	}
 
 	//works
+	@Override
 	public String toString() {
 		String printStr = new String(chars);
 
 		return printStr;
 	}
 
-	//not working.
-	//	public static MyString valueOf(int i) {
-	//		
-	//		MyString val = new MyString(i);
-	//		
-	//		return val;
-	//	}
+	//works
+	
+	//this simply has to return a mystring. 
+	
+	public static MyString valueOf(int i) {
+		
+		MyString val = new MyString(i);
+
+		return val;
+	}
 
 	//works
-//	public boolean equals(MyString s) {
-//		if (this.chars.length == s.length() &&
-//			this.chars[0] == s.charAt(0)) {
-//			return true;
-//		}
-//		return false;
-//	}
-	
 	public boolean equals(MyString s) {
-		
+
 		int flag = 0;
-		
+
 		if (this.chars.length == s.length()) {
 			for (int i = 0; i < s.length(); i++) {
 				if (this.charAt(i) == s.charAt(i)){
@@ -92,13 +88,31 @@ public class MyString {
 		}
 		return false;
 	}
-	
 
-	//
+
+	//works
 	public MyString getMyString() {
 		return new MyString(chars);
 	}
-
-
-
+	
+	public MyString toLowerCase() {
+		
+		for (int i = 0; i < chars.length; i++) { 
+			this.chars[i]
+			= Character.toLowerCase(this.charAt(i));
+		}
+		
+		//I didn't know I could do this. :D 
+		return this;
+	}
+	
+	public MyString toUpperCase() {
+		for (int i = 0; i < chars.length; i++) { 
+			this.chars[i]
+			= Character.toUpperCase(this.charAt(i));
+		}
+		return this;
+	}
+	
+	
 }

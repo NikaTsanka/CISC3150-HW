@@ -5,6 +5,8 @@ public class MyStringDriver {
 		
 		char[] array = { 'a', 'r', 't', 'i', 's', 't' };
 		
+		char[] array1 = { 'R', 'A', 'W'};
+		
 		char[] array2 = { 'a', 'r', 't', 'i', 's', 't', 's' };
 		
 		MyString test = new MyString(array);
@@ -21,16 +23,20 @@ public class MyStringDriver {
 		//substring works.
 		System.out.println(test.substring(1, 4));
 		
-		//getMyString
+		//getMyString works
 		System.out.println(test.getMyString());
+		MyString newmystring = new MyString();
+		newmystring = test.getMyString();
+		System.out.println(newmystring);
 		
-		//valueOf
-		//System.out.println(MyString.valueOf(7));
+		//valueOf works
+		System.out.println(MyString.valueOf(6));
+		MyString some;
+		some = MyString.valueOf(6);
+		System.out.println(some);
 		
-		//equals
-//		test = null;
-//		test = new MyString('s', '5');
 		
+		//equals works
 		MyString testTo = new MyString(array2);
 		
 		if (test.equals(testTo)) {
@@ -43,8 +49,14 @@ public class MyStringDriver {
 		}
 		
 		
+		//toLoweCase works
+		MyString test2 = new MyString(array1);
 		
-
+		System.out.println(test2.toLowerCase());
+		
+		//toUpperCase 
+		System.out.println(testTo.toUpperCase());
+		
 	}
 
 }
