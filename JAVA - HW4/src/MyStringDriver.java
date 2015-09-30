@@ -11,6 +11,8 @@ public class MyStringDriver {
 		
 		MyString test = new MyString(array);
 		
+		//
+		
 		//toString works
 		System.out.println(test);
 		
