@@ -1,0 +1,12 @@
+"MyString(char singleChar)" constructor: c
+"toString()" method: java
+"charAt(int index)" method: v
+"length()" method: 4
+"substring(int begin, int end)" method: av
+"toLowerCase()" method: capital
+"toUpperCase()" method: PLATFORM
+"equals(MyString s)" method: 
+	Yes: java equals java
+	No: java doesn't equal capital
+"getMyString()" method: java
+"valueOf(int i)" method: 6

@@ -1,3 +1,7 @@
+/**
+ * This Class resembles java.lang.String class.
+ * @author Nika Tsankashvili
+ */
 import java.util.Arrays;
 
 public class MyString {
@@ -5,6 +9,7 @@ public class MyString {
 	//Character array to store the passed characters.
 	private final char[] charsArray;
 
+	/*Class Constructors*/
 	/**
 	 * Default Constructor
 	 * Initializes charsArray[] to 0.
@@ -17,6 +22,16 @@ public class MyString {
 	}
 
 	/**
+	 * Single character constructor.
+	 * @param singleChar Char to initialize the charArray.
+	 */
+	public MyString(char singleChar) {
+		this.charsArray = new char[1];
+
+		this.charsArray[0] = singleChar;
+	}
+
+	/**
 	 * Main Constructor
 	 * This constructor initializes the charsArray[] array
 	 * with the passed charsArray argument.
@@ -26,7 +41,7 @@ public class MyString {
 		this.charsArray = new char[chars.length];
 
 		for (int i = 0; i < chars.length; i++) {
-			this.charsArray[i] = charsArray[i];
+			this.charsArray[i] = chars[i];
 		}
 	}
 
@@ -52,6 +67,7 @@ public class MyString {
 		this.charsArray[0] = intToChar;
 	}
 
+	/*Class Methods*/
 	/**
 	 * This method returns a character at a specified
 	 * index.
@@ -80,24 +96,23 @@ public class MyString {
 	 * @return the substring of the string.
 	 */
 	public MyString substring(int begin, int end) {
-
 		if (begin < 0 || end < 0) {
-			System.out.println("/'Begin/' or /'End/' index " +
-							"cannot be a negative number.");
+			System.out.println("\'Begin\' or \'End\' index " +
+					"cannot be a negative number.");
 			throw new IndexOutOfBoundsException();
 		}
 		if (begin > end) {
-			System.out.println("/'Begin/' cannot be bigger " + 
-							"than /'end/'.");
+			System.out.println("\'Begin\' cannot be bigger " + 
+					"than \'end\'.");
 			throw new IndexOutOfBoundsException();
 		}
 		if (begin == end) {
-			System.out.println("/'Begin/' and /'end/'" + 
-							" cannot be the same.");
+			System.out.println("\'Begin\' and \'end\'" + 
+					" cannot be the same.");
 			throw new IndexOutOfBoundsException();
 		}
 		if (end > charsArray.length) {
-			System.out.println("/'end/' is literarely" + 
+			System.out.println("\'end\' is literarely" + 
 					" out of bound :D .");
 			throw new IndexOutOfBoundsException();
 		}
@@ -107,6 +122,64 @@ public class MyString {
 						begin, end));
 
 		return subString;
+	}
+
+	/**
+	 * Converts upper case characters to lower case
+	 * @return Returns lower case characters. 
+	 */
+	public MyString toLowerCase() {
+		for (int i = 0; i < charsArray.length; i++) { 
+			this.charsArray[i]
+					= Character.toLowerCase(this.charAt(i));
+		}
+
+		//I didn't know I could do this. :D 
+		return this;
+	}
+
+	/**
+	 * Converts lower case characters to upper case
+	 * @return Returns upper case characters. 
+	 */
+	public MyString toUpperCase() {
+		for (int i = 0; i < charsArray.length; i++) { 
+			this.charsArray[i]
+					= Character.toUpperCase(this.charAt(i));
+		}
+		return this;
+	}
+
+	/**
+	 * This method compares to MyString objects.
+	 * @param s The s is the passed array of chars
+	 * @return True if the objects are the same 
+	 * 		   otherwise false.
+	 */
+	public boolean equals(MyString s) {
+		int flag = 0;
+
+		if (this.charsArray.length == s.length()) {
+			for (int i = 0; i < s.length(); i++) {
+				if (this.charAt(i) == s.charAt(i)){
+					flag++;
+				}
+			}
+			if (flag == s.length()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns a MyString object.
+	 * @return MyString object.
+	 */
+	public MyString getMyString() {
+		return new MyString(charsArray);
 	}
 
 	/**
@@ -133,50 +206,5 @@ public class MyString {
 
 		return val;
 	}
-
-	//works
-	public boolean equals(MyString s) {
-		int flag = 0;
-
-		if (this.charsArray.length == s.length()) {
-			for (int i = 0; i < s.length(); i++) {
-				if (this.charAt(i) == s.charAt(i)){
-					flag++;
-				}
-			}
-			if (flag == s.length()) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		return false;
-	}
-
-
-	//works
-	public MyString getMyString() {
-		return new MyString(charsArray);
-	}
-
-	public MyString toLowerCase() {
-
-		for (int i = 0; i < charsArray.length; i++) { 
-			this.charsArray[i]
-					= Character.toLowerCase(this.charAt(i));
-		}
-
-		//I didn't know I could do this. :D 
-		return this;
-	}
-
-	public MyString toUpperCase() {
-		for (int i = 0; i < charsArray.length; i++) { 
-			this.charsArray[i]
-					= Character.toUpperCase(this.charAt(i));
-		}
-		return this;
-	}
-
 
 }
