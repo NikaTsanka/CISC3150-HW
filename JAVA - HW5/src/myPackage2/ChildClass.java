@@ -1,10 +1,24 @@
 package myPackage2;
 
-public class ChildClass {
+import myPackage1.ParentClass;
+
+public class ChildClass extends ParentClass {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		/*
+		 * This class extends the "ParentClass" so it has access
+		 * to the protected variable "protectedVar" through the
+		 * its own instance because the relationship is "IS A" and
+		 * if we simply created parent class object we will not
+		 * have access to it since this class is in the different
+		 * package. Protected variable is only accessible by inheritance
+		 * in different packages.
+		 */
+		ChildClass testObj = new ChildClass();
+		
+		//This works
+		System.out.println(testObj.protectedVar);
+		
 	}
 
 }

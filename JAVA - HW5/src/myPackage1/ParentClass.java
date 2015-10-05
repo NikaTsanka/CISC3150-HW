@@ -1,10 +1,13 @@
 package myPackage1;
 
 public class ParentClass {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
+	/*
+	 * This variable can be accessed:
+	 * 		Within the same class. "ParentClass"
+	 * 		From any class in the same package. "myPackage1"
+	 * 		From any subclass from different package. "myPackage2" 
+	 */
+	protected int protectedVar = 10;
 
 }
