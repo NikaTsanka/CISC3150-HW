@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.Error: Unresolved compilation problem: 
+	The field ParentClass.protectedVar is not visible
+
+	at myPackage2.Q1DriverClass.main(Q1DriverClass.java:23)
