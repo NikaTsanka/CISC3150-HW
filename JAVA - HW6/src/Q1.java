@@ -6,11 +6,10 @@
 public class Q1 {
 	
 	//Operand Variables
-	private static int operand1, operand2;
-	private static double dblOperand1, dblOperand2;
+	private static double operand1, operand2;
 	
 	//Operator Variable
-	private static char mainOperator;
+	private static char operator;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,16 +21,21 @@ public class Q1 {
 		 * They have to parsed since all args are strings 
 		 */
 		//Operands
-		//operand1 = Integer.parseInt(args[0]);
-		//operand2 = Integer.parseInt(args[2]);
+		operand1 = Double.parseDouble(args[0]);
+		operand2 = Double.parseDouble(args[2]);
 		
 		//Operator
-		//mainOperator = args[1].charAt(0);
+		if (args[1].length() == 1) {
+			operator = args[1].charAt(0);
+		} else {
+			System.out.println("agadg");
+		}
 		
 		
-		//System.out.println(operand1 + " " + operand2 + " " + mainOperator);
 		
-		System.out.println(calcReq(6.4, '*', 3.2));
+		System.out.println(operand1 + " " + operator + " " + operand2);
+		
+		System.out.println(calcReq(operand1, operator, operand2));
 		
 	}
 	//Overloaded methods
@@ -41,30 +45,7 @@ public class Q1 {
 						
 		}
 	}
-	public static int calcReq(int opnd1, char optr,int opnd2) {
-		
-		int intResult = 0;
-		
-		if (optr == '+') {
-			//Do Addition
-			intResult = opnd1 + opnd2;
-		} else if (optr == '-') {
-			//Subtraction
-			intResult = opnd1 - opnd2;
-		} else if (optr == '/'){
-			//
-			intResult = opnd1 / opnd2;
-		} else if (optr == '*') {
-			//
-			intResult = opnd1 * opnd2;
-		} else if (optr == '%') {
-			//
-			intResult = opnd1 % opnd2;
-		}
-		
-		return intResult;
-	}
-	
+
 public static double calcReq(double opnd1, char optr,double opnd2) {
 		
 	double dblResult = 0;
