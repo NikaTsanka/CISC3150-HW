@@ -15,21 +15,22 @@ public class Q1 {
 	private static String inputLine;
 	private static String[] inputLineToArray;
 
-	public Q1() throws NotANumberException {
+	public Q1() {
 		setArguments();
 	}
 
-	public void setArguments() throws NotANumberException {
+	public void setArguments() {
 
 		boolean continueInput = true;
-		//System.out.println("Number of arguments: " + args.length);
+
 		do {
 			try {
 
 				myScanner = new Scanner(System.in);
 				inputLine = myScanner.nextLine();
 				inputLineToArray = inputLine.split(" ");
-				
+
+				//Check for not enough arguments
 				if (inputLineToArray.length != 3) {
 					throw new NotEnoughNumbersException(inputLine);
 				}
@@ -40,24 +41,29 @@ public class Q1 {
 				} else {
 					throw new NotANumberException(inputLineToArray[0]);
 				}
-				
+
 				if (isNumeric(inputLineToArray[2])) {
 					operand2 = Double.parseDouble(inputLineToArray[2]);
 				} else {
 					throw new NotANumberException(inputLineToArray[2]);
 				}
-				
+
 				//Set Operator
 				if (inputLineToArray[1].length() == 1 && checkOperator(inputLineToArray[1])) {
 					operator = inputLineToArray[1].charAt(0);
 				} else {
 					throw new IllegalOperationException(inputLineToArray[1]);
 				}
+
+				if (operand1 == 0 || operand2 == 0) {
+					throw new ArithmeticException("Divisor cannot be zero");
+				}
 				//If everything is fine then no need to repeat.
 				continueInput = false;
 				System.out.println(calcReq(operand1, operator, operand2));
-				
-			} catch (NotANumberException | IllegalOperationException | NotEnoughNumbersException ce){
+
+			} catch (NotANumberException | IllegalOperationException | 
+					NotEnoughNumbersException | ArithmeticException ce){
 				System.out.println(ce.getMessage());
 			} 
 		} while (continueInput);
@@ -65,13 +71,14 @@ public class Q1 {
 	}
 
 
-	public static void main(String[] args) throws NotANumberException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new Q1();
 
 	}
 
-	public static double calcReq(double opnd1, char optr,double opnd2) {
+	public static double calcReq(double opnd1, char optr,double opnd2)
+			throws ArithmeticException {
 
 		double dblResult = 0;
 
@@ -115,21 +122,18 @@ public class Q1 {
 			return false;
 		}
 	}
-	
+
 	/* Citation
 	 * http://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-a-numeric-type-in-java
 	 */
 	public static boolean isNumeric(String str)  
 	{  
-	  try  
-	  {  
-	    @SuppressWarnings("unused")
-		double d = Double.parseDouble(str);  
-	  }  
-	  catch(NumberFormatException nfe)  
-	  {  
-	    return false;  
-	  }  
-	  return true;  
+		try {  
+			@SuppressWarnings("unused")
+			double d = Double.parseDouble(str);  
+		} catch(NumberFormatException nfe) {  
+			return false;  
+		}  
+		return true;  
 	}
 }
