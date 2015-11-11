@@ -54,7 +54,7 @@ public class Q1 {
 				} else {
 					throw new IllegalOperationException(inputLineToArray[1]);
 				}
-
+				//Check for zeros
 				if (operand1 == 0 || operand2 == 0) {
 					throw new ArithmeticException("Divisor cannot be zero");
 				}
