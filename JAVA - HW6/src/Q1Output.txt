@@ -1,1 +1,25 @@
-asfafasf
+C:\Users\Nika\Desktop\src>java Q1 10 / 5
+2.0
+
+C:\Users\Nika\Desktop\src>java Q1 2 + 5
+7.0
+
+C:\Users\Nika\Desktop\src>java Q1 2 + y
+Invalid Operand: y
+Please re-enter your arguments: 2 + 7
+9.0
+
+C:\Users\Nika\Desktop\src>java Q1 2 + 0
+Divisor cannot be zero
+Please re-enter your arguments: 2 / 2
+1.0
+
+C:\Users\Nika\Desktop\src>java Q1 2 +
+Missing an Operand: null
+Please re-enter your arguments: 2 % 3
+2.0
+
+C:\Users\Nika\Desktop\src>java Q1 2 # 5
+Invalid Operator: #
+Please re-enter your arguments: 120 / 5
+24.0

@@ -2,7 +2,7 @@ import java.util.Scanner;
 import static java.lang.System.out;
 /**
  * This program can perform command line calculations.
- * @author Nika Tsankashvili
+ * @author Nika Tsankashvili 
  */
 public class Q1 {
 	//Scanner Variable
@@ -16,11 +16,10 @@ public class Q1 {
 	//private static String[] passedLineToArray;
 
 	public static void main(String[] args) {
-
 		//Class Object
 		Q1 workingObj = new Q1();
 
-		//Pass it to the set argument method.
+		//Pass args to the set arguments method.
 		workingObj.setArguments(args);
 	}
 	//This method sets the arguments and calls the calculator method.

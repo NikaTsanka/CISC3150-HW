@@ -1,3 +1,6 @@
+/**
+ * @author Nika Tsankashvili
+ */
 @SuppressWarnings("serial")
 public class IllegalOperationException  extends IllegalArgumentException {
 	
