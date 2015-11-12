@@ -1,3 +1,4 @@
+@SuppressWarnings("serial")
 public class NotEnoughNumbersException  extends IllegalArgumentException {
 	
 	String nene;

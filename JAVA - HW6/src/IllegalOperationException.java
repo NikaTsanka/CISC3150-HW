@@ -1,3 +1,4 @@
+@SuppressWarnings("serial")
 public class IllegalOperationException  extends IllegalArgumentException {
 	
 	String ioe;

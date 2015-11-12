@@ -5,57 +5,73 @@ import java.util.Scanner;
  *
  */
 public class Q1 {
-	//Scanner
+	//Scanner Variable
 	private static Scanner myScanner;
 	//Operand Variables
 	private static double operand1, operand2;
 	//Operator Variable
 	private static char operator;
-	//
+	//String Variables
 	private static String inputLine;
-	private static String[] inputLineToArray;
+	//private static String[] passedLineToArray;
+	
+	//Main
+	public static void main(String[] args) {
+		
+		//Class Object
+		Q1 workingObj = new Q1();
+		
+		//Pass it to the set argument method.
+		workingObj.setArguments(args);
 
-	public Q1() {
-		setArguments();
 	}
-
-	public void setArguments() {
+	
+	public void setArguments(String[] stringArray) {
 
 		boolean continueInput = true;
+		boolean repeat = false;
 
 		do {
 			try {
-
-				myScanner = new Scanner(System.in);
-				inputLine = myScanner.nextLine();
-				inputLineToArray = inputLine.split(" ");
+				if (repeat) {
+					//Open scanner and get the input from the user
+					myScanner = new Scanner(System.in);
+					inputLine = myScanner.nextLine();
+					stringArray = inputLine.split(" ");
+				}
+				
 
 				//Check for not enough arguments
-				if (inputLineToArray.length != 3) {
+				if (stringArray.length != 3) {
+					repeat = true;
 					throw new NotEnoughNumbersException(inputLine);
 				}
 
 				//Set Operands
-				if (isNumeric(inputLineToArray[0])) {
-					operand1 = Double.parseDouble(inputLineToArray[0]);
+				if (isNumeric(stringArray[0])) {
+					operand1 = Double.parseDouble(stringArray[0]);
 				} else {
-					throw new NotANumberException(inputLineToArray[0]);
+					repeat = true;
+					throw new NotANumberException(stringArray[0]);
 				}
 
-				if (isNumeric(inputLineToArray[2])) {
-					operand2 = Double.parseDouble(inputLineToArray[2]);
+				if (isNumeric(stringArray[2])) {
+					operand2 = Double.parseDouble(stringArray[2]);
 				} else {
-					throw new NotANumberException(inputLineToArray[2]);
+					repeat = true;
+					throw new NotANumberException(stringArray[2]);
 				}
 
 				//Set Operator
-				if (inputLineToArray[1].length() == 1 && checkOperator(inputLineToArray[1])) {
-					operator = inputLineToArray[1].charAt(0);
+				if (stringArray[1].length() == 1 && checkOperator(stringArray[1])) {
+					operator = stringArray[1].charAt(0);
 				} else {
-					throw new IllegalOperationException(inputLineToArray[1]);
+					repeat = true;
+					throw new IllegalOperationException(stringArray[1]);
 				}
 				//Check for zeros
-				if (operand1 == 0 || operand2 == 0) {
+				if (operand2 == 0) {
+					repeat = true;
 					throw new ArithmeticException("Divisor cannot be zero");
 				}
 				//If everything is fine then no need to repeat.
@@ -70,16 +86,7 @@ public class Q1 {
 
 	}
 
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new Q1();
-
-	}
-
-	public static double calcReq(double opnd1, char optr,double opnd2)
-			throws ArithmeticException {
-
+	public static double calcReq(double opnd1, char optr,double opnd2) {
 		double dblResult = 0;
 
 		if (optr == '+') {
@@ -98,7 +105,6 @@ public class Q1 {
 			//
 			dblResult = opnd1 % opnd2;
 		}
-
 		return dblResult;
 	}
 	public static boolean checkOperator(String optr) {		

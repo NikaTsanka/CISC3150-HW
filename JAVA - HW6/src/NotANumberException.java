@@ -1,3 +1,4 @@
+@SuppressWarnings("serial")
 public class NotANumberException extends IllegalArgumentException {
 	
 	String nane;
