@@ -1,0 +1,11 @@
+Which Drive: E
+E:\ file system will be printed in dir_tree.txt
+Total number of directories: 1925
+
+Which Drive: G
+G:\ does not exist
+Yep something definitely went wrong
+java.io.FileNotFoundException
+	at Q1.setRoot(Q1.java:49)
+	at Q1.<init>(Q1.java:26)
+	at Q1.main(Q1.java:95)
