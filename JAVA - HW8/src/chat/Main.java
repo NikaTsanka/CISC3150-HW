@@ -7,6 +7,12 @@ public class Main {
 		Server theServer = new Server();
 		
 		theServer.connectClients();
+		
+		Thread myThread = new Thread(theServer);
+		
+		myThread.start();
+		
+		
 	}
 
 }
