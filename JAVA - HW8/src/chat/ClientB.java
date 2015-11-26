@@ -9,49 +9,50 @@ public class ClientB {
 
 	public static Scanner myScanner = new Scanner(System.in);
 
-	static PipedWriter localWriter = new PipedWriter();
+	//static PipedWriter localWriter = new PipedWriter();
 
-	static PipedReader localReader = new PipedReader();
+	//static PipedReader localReader = new PipedReader();
 
+	static ReadInB readersB = new ReadInB();
+	static WriteOutB writesB = new WriteOutB();
+	
 	public static void main(String[] args) {
 
+		
+		readersB.setReader();
+		
+		writesB.setWriter();
 
-		new ClientB();
-		Thread cR = new Thread(new ReadInB());
-		Thread cW = new Thread(new WriteOutB());
+/*		//new ClientB();
+		ReadInB read = new ReadInB();
+		WriteOutB write = new WriteOutB();
+		
+		//read.setReader(localReader);
+		//write.setWriter(localWriter);
+*/		
+		Thread cR = new Thread(readersB);
+		Thread cW = new Thread(writesB);
 		cR.start();
 		cW.start();
 	}
 
-	public PipedWriter returnWriter() {
+/*	public PipedWriter returnWriter() {
 		return localWriter;
 	}
 	
 	public PipedReader retLocalReader() {
 		return localReader;
-	}
-
-	public void connectPipes(PipedWriter pw) {
-
-		try {
-			localReader.connect(pw);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-	
+	}*/
 
 }
 class WriteOutB implements Runnable {
-	public static PipedWriter writer = null;
+	PipedWriter writer;
+	
+	public void setWriter() {
+		writer = Server.writerFromA;
+	}
 	
 	public void run() {
-		
-		ClientA localClient = new ClientA();
-		
-		writer = localClient.returnWriter();
-		
 		
 		try {
 			System.out.print("Message to A: ");
@@ -69,13 +70,14 @@ class WriteOutB implements Runnable {
 
 class ReadInB implements Runnable {
 	
-	public static PipedReader reader = null;
+	PipedReader reader;
+	
+	//From client A
+	public void setReader() {
+		reader = Server.readerB;
+	}
 	
 	public void run() {
-		
-		ClientA localClient = new ClientA();
-		
-		reader = localClient.retLocalReader();
 		
 		try {
 			if (reader.ready()) {

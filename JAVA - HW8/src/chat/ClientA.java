@@ -9,53 +9,48 @@ public class ClientA {// implements Runnable
 
 	public static Scanner myScanner = new Scanner(System.in);
 
-	public static PipedWriter localWriter = new PipedWriter();
+	//public static PipedReader localReader = new PipedReader();
 
-	public static PipedReader localReader = new PipedReader();
+	//public static PipedWriter localWriter = new PipedWriter();
+
+	static ReadInA readersA = new ReadInA();
+	static WriteOutA writesA = new WriteOutA();
 	
-
 	public static void main(String[] args) {
 
-		new ClientA();
-		
-		Thread cR = new Thread(new ReadInA());
-		Thread cW = new Thread(new WriteOutA());
+		//new ClientA();
+		readersA.setReader();
+		writesA.setWriter();
+
+
+		Thread cR = new Thread(readersA);
+		Thread cW = new Thread(writesA);
 		cR.start();
 		cW.start();
-		
+	}
+
+/*	public ReadInA getLocalReader() {
+		return 
 	}
 
 	public PipedWriter returnWriter() {
 		return localWriter;
-	}
-	
-	public PipedReader retLocalReader() {
-		return localReader;
-	}
+	}*/
 
-	public void connectPipes(PipedWriter pw) {
-
-		try {
-			localReader.connect(pw);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-		}
-	}
 }
 
 class WriteOutA implements Runnable {
-	
-	public static PipedWriter writer = null;
-	
+
+	PipedWriter writer;
+
+	public void setWriter() {
+		writer = Server.writerFromB;
+	}
+
+
+
 	public void run() {
-		
-		ClientA localClient = new ClientA();
-		
-		writer = localClient.returnWriter();
-		
-		
+
 		try {
 			System.out.print("Message to B: ");
 			String msgStr = ClientA.myScanner.next();
@@ -71,17 +66,18 @@ class WriteOutA implements Runnable {
 }
 
 class ReadInA implements Runnable {
-	
-	public static PipedReader reader = null;
-	
+
+	PipedReader reader;
+
+	//From client B
+	public void setReader() {
+		reader = Server.readerA;
+	}
+
 	public void run() {
-		
-		ClientA localClient = new ClientA();
-		
-		reader = localClient.retLocalReader();
-		
+
 		try {
-			if (ClientA.localReader.ready()) {
+			if (reader.ready()) {
 				System.out.print("Client A received: ");
 				while(reader.ready()) {
 					System.out.print("" + (char) reader.read());
@@ -94,5 +90,5 @@ class ReadInA implements Runnable {
 			//e.printStackTrace();
 		}
 	}
-	
+
 }

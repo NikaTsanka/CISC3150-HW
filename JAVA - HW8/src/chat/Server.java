@@ -5,45 +5,82 @@ import java.io.PipedReader;
 import java.io.PipedWriter;
 
 public class Server implements Runnable {
+		
+	static PipedReader readerA = null;
+	static PipedReader readerB = null;
 	
-	PipedReader serverReaderFromCA = null;
-	PipedReader serverReaderFromCB = null;
+	static PipedWriter writerFromA = new PipedWriter();
+	static PipedWriter writerFromB = new PipedWriter();
 	
-	ClientA clientA = new ClientA();
-	ClientB clientB = new ClientB();
+
 	
-	PipedWriter writerFromBtoA = clientB.returnWriter();
-	PipedWriter writerFromAtoB = clientA.returnWriter();
+	
+	
+/*	public static ReadInA getReadA() {
+		return readersA;
+	}
+	
+	public static ReadInB getReadB() {
+		return readersB;
+	}*/
+	
 
 	public void connectClients() {
 		//Connect the pipes first
-		clientA.connectPipes(writerFromBtoA);
-		clientB.connectPipes(writerFromAtoB);
+		//clientA.connectPipes(writerFromBtoA);
+		//clientB.connectPipes(writerFromAtoB);
+		try {
+			readerA = new PipedReader(writerFromB);
+			readerB = new PipedReader(writerFromA);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 	
+/*	public PipedReader getReaderA() {
+		return readerA;
+	}
+	
+	public PipedReader getReaderB() {
+		return readerB;
+	}*/
+	
+	
 	public void run() {
 		
-		connectClients();
+/*		Thread t1A = new Thread(readersA);
+		Thread t2A = new Thread(writesA);
+		
+		t1A.start();
+		t2A.start();
+		
+		Thread t1B = new Thread(readersB);
+		Thread t2B = new Thread(writesB);
+		
+		t1B.start();
+		t2B.start();*/
 		
 		try {
 			
-			serverReaderFromCA = clientA.retLocalReader();
+			//serverReaderFromCA = clientA.retLocalReader();
 			
-			serverReaderFromCB = clientB.retLocalReader();
+			//serverReaderFromCB = clientB.retLocalReader();
 			
 			while (true) {
-				while(serverReaderFromCA.ready()) {
-					System.out.print("" + (char)serverReaderFromCA.read());
+				while(readerA.ready()) {
+					System.out.print("" + (char)readerA.read());
 				}
 				//System.out.println();
 				
-				while(serverReaderFromCB.ready()) {
-					System.out.print("" + (char) serverReaderFromCB.read());
+				while(readerB.ready()) {
+					System.out.print("" + (char) readerB.read());
 				}
 				//System.out.println();
 			}	
-			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
