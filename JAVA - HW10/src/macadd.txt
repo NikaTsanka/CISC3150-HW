@@ -1,0 +1,6 @@
+
+Physical Address    Transport Name                                            
+=================== ==========================================================
+0B-05-26-00-00-01   \Device\Tcpip_{95878J91-7F0J-4377-1M41-FDA768B2E035}      
+N/A                 Hardware not present                                      
+37-O7-4K-98-22-G7   \Device\Tcpip_{85I12C06-04D6-0LLG-B4GF-0K790253640F}   

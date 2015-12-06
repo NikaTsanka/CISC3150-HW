@@ -1,0 +1,21 @@
+Your command> notepad&
+0
+
+Your command> calc&
+0
+
+Your command> notepad
+Dude. What took you so long?
+0
+
+Your command> whoami > whoami.txt
+0
+
+Your command> getmac > macadd.txt
+0
+
+Your command> hostname > host.txt
+0
+
+Your command> whoami < wrong.txt
+You messed up. Sorry
